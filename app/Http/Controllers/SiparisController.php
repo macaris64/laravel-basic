@@ -6,10 +6,10 @@ use Illuminate\Http\Request;
 
 class SiparisController extends Controller
 {
-    public function siparisler() {
+    public function index() {
         return view('siparisler');
     }
-    public function siparis() {
+    public function detay() {
         return view('siparis');
     }
 }

@@ -10,8 +10,11 @@ Route::get('/urun/{slug_urunadi}' , 'UrunController@index')->name('urun');
 
 Route::get('/sepet' , 'SepetController@index')->name('sepet');
 Route::get('/ode' , 'OdeController@index')->name('ode');
-Route::get('/siparisler' , 'SiparisController@siparisler')->name('siparisler');
-Route::get('/siparis' , 'SiparisController@siparis')->name('siparis');
-Route::get('/giris' , 'KullaniciController@giris')->name('giris');
-Route::get('/kayit-ol' , 'KullaniciController@kayit')->name('kayit');
+Route::get('/siparisler' , 'SiparisController@index')->name('siparisler');
+Route::get('/siparisler/{id}' , 'SiparisController@detay')->name('siparis');
+
+Route::get('/giris' , 'KullaniciController@giris_form')->name('auth.giris');
+Route::get('/kayit-ol' , 'KullaniciController@kayit_form')->name('auth.kayit');
+Route::get('/sifre-sifirlama-email' , 'KullaniciController@sifre_sifirla_email_form')->name('auth.sifresifirlaemail');
+Route::get('/sifre-sifirlama-formu' , 'KullaniciController@sifre_sifirla_form')->name('auth.sifresifirlaform');
 
