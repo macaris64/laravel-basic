@@ -3,20 +3,20 @@
 @section('content')
     <div class="container">
         <ol class="breadcrumb">
-            <li><a href="#">Anasayfa</a></li>
+            <li><a href="{{ route('/')  }}">Anasayfa</a></li>
             <li><a href="#">Kategori</a></li>
-            <li class="active">Kategori</li>
+            <li class="active">{{ $kategori -> name  }}</li>
         </ol>
         <div class="row">
             <div class="col-md-3">
                 <div class="panel panel-default">
-                    <div class="panel-heading">Kategori Adı</div>
+                    <div class="panel-heading">{{ $kategori -> name  }}</div>
                     <div class="panel-body">
                         <h3>Alt Kategoriler</h3>
                         <div class="list-group categories">
-                            <a href="#" class="list-group-item"><i class="fa fa-television"></i> Alt Kategori</a>
-                            <a href="#" class="list-group-item"><i class="fa fa-television"></i> Alt Kategori</a>
-                            <a href="#" class="list-group-item"><i class="fa fa-television"></i> Alt Kategori</a>
+                            @foreach($alt_kategoriler as $kategori)
+                            <a href="{{ $kategori->slug  }}" class="list-group-item"><i class="fa fa-television"></i> {{ $kategori->name  }}</a>
+                            @endforeach
                         </div>
                         <h3>Fiyat Aralığı</h3>
                         <form>

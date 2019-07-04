@@ -16,13 +16,17 @@ class KategoriTableSeeder extends Seeder
     {
         Kategori::truncate();
 
-        for ($i=0;$i<100;$i++)
+        for ($i=0;$i<150;$i++)
         {
             $name = $faker->firstName;
+            $parent_category = rand(0,10);
+            if ($parent_category == 0)
+                $parent_category = null;
 
             Kategori::create([
                 'name' => $name,
-                'slug' => str_slug($name)
+                'slug' => str_slug($name),
+                'parent_category_id' => $parent_category
             ]);
         }
 

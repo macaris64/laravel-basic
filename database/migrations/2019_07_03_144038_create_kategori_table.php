@@ -13,6 +13,8 @@ class CreateKategoriTable extends Migration
             $table->increments('id');
             $table->string('name',40)->nullable();
             $table->string('slug',40)->nullable();
+            $table->string('font_name',40)->nullable();
+            $table->integer('parent_category_id',false,11)->nullable();
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP on UPDATE CURRENT_TIMESTAMP'));
             //$table->softDeletes();
