@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateKategoriUrunTable extends Migration
+class CreateKullaniciTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,21 +13,17 @@ class CreateKategoriUrunTable extends Migration
      */
     public function up()
     {
-        Schema::create('kategori_urun', function (Blueprint $table) {
+        Schema::create('kullanici', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('kategori_id')->unsigned();
-            $table->integer('urun_id')->unsigned();
+            $table->string('adsoyad',60);
+            $table->string('email',150)->unique();
+            $table->string('sifre',60);
+            $table->string('aktivasyon_anahtari',60);
+            $table->boolean('aktif_mi')->default(0);
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP on UPDATE CURRENT_TIMESTAMP'));
             //$table->softDeletes();
             $table->timestamp('deleted_at')->nullable();
-
-            $table->foreign('kategori_id')->references('id')->on('kategori')->onDelete('cascade');
-            $table->foreign('urun_id')->references('id')->on('urun')->onDelete('cascade');
-
-
-
-
         });
     }
 
@@ -38,6 +34,6 @@ class CreateKategoriUrunTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('kategori_urun');
+        Schema::dropIfExists('kullanici');
     }
 }

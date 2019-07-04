@@ -3,6 +3,9 @@
 use Illuminate\Database\Seeder;
 use App\Models\Urun;
 use App\Models\UrunDetay;
+use App\Models\Kategori;
+use App\Models\KategoriUrun;
+
 
 
 class UrunTableSeeder extends Seeder
@@ -17,6 +20,7 @@ class UrunTableSeeder extends Seeder
         DB::statement('SET FOREIGN_KEY_CHECKS=0;');
         Urun::truncate();
         UrunDetay::truncate();
+        KategoriUrun::truncate();
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 
         for ($i=0;$i<150;$i++)
@@ -58,10 +62,8 @@ class UrunTableSeeder extends Seeder
                 'slug' => str_slug($name),
                 'fiyat' => $faker->randomFloat(3,1,20),
                 'aciklama' => $faker->sentence(6,true)
-
-
-
             ]);
+
             $urunCount = Urun::count();
             $detay = $urun->detay()-> create([
                 'slider_mi' => $slider_mi,
@@ -70,6 +72,20 @@ class UrunTableSeeder extends Seeder
                 'cok_satan_mi' => $cok_satan_mi,
                 'indirimli_mi' => $indirimli_mi
             ]);
+
+
         }
+        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+        for($i=0;$i<150;$i++)
+        {
+            $kategoriCount = Kategori::count();
+            $kategoriId = rand(1 , $kategoriCount);
+
+            KategoriUrun::create([
+                'kategori_id' => rand(1,$kategoriId),
+                'urun_id' => $i+1
+            ]);
+        }
+        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
     }
 }

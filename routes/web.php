@@ -16,5 +16,6 @@ Route::get('/siparisler/{id}' , 'SiparisController@detay')->name('siparis');
 // Auth Prefix
 Route::get('/giris' , 'KullaniciController@giris_form')->name('auth.giris');
 Route::get('/kayit-ol' , 'KullaniciController@kayit_form')->name('auth.kayit');
+Route::post('/kayit-ol' , 'KullaniciController@kayit');
 Route::get('/sifre-sifirlama-email' , 'KullaniciController@sifre_sifirla_email_form')->name('auth.sifresifirlaemail');
 Route::get('/sifre-sifirlama-formu' , 'KullaniciController@sifre_sifirla_form')->name('auth.sifresifirlaform');
