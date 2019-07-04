@@ -17,20 +17,20 @@
                 <div class="input-group">
                     <input type="text" id="navbar-search" class="form-control" placeholder="Ara">
                     <span class="input-group-btn">
-                                <button type="submit" class="btn btn-default">
-                                    <i class="fa fa-search"></i>
-                                </button>
-                            </span>
+                        <button type="submit" class="btn btn-default">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </span>
                 </div>
             </form>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#"><i class="fa fa-shopping-cart"></i> Sepet <span class="badge badge-theme">5</span></a></li>
+                <li><a href="{{ route('sepet') }} "><i class="fa fa-shopping-cart"></i> Sepet <span class="badge badge-theme">5</span></a></li>
                 <li><a href="{{ route('auth.giris')  }}">Oturum Aç</a></li>
                 <li><a href="{{ route('auth.kayit')  }}">Kaydol</a></li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> Profil <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">Siparişlerim</a></li>
+                        <li><a href="{{ route('siparisler') }}">Siparişlerim</a></li>
                         <li role="separator" class="divider"></li>
                         <li><a href="#">Çıkış</a></li>
                     </ul>

@@ -1,10 +1,12 @@
 @extends('layouts.master')
-@section('title','Ürün')
+@section('title', $urun->name)
 @section('content')
     <div class="container">
         <ol class="breadcrumb">
             <li><a href="#">Anasayfa</a></li>
-            <li><a href="#">{{ $kategori -> name  }}</a></li>
+            @foreach($kategoriler as $kategori)
+            <li><a href=" {{ route('kategori', $kategori->slug)  }} ">{{ $kategori->name  }}</a></li>
+            @endforeach
             <li class="active">{{ $urun->name  }}</li>
         </ol>
         <div class="bg-content">

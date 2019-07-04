@@ -1,10 +1,9 @@
 @extends('layouts.master')
-@section('title','Kategori')
+@section('title', $kategori->name)
 @section('content')
     <div class="container">
         <ol class="breadcrumb">
             <li><a href="{{ route('/')  }}">Anasayfa</a></li>
-            <li><a href="#">Kategori</a></li>
             <li class="active">{{ $kategori -> name  }}</li>
         </ol>
         <div class="row">

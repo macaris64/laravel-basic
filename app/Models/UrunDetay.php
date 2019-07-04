@@ -6,11 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 
-class Urun extends Model
+class UrunDetay extends Model
 {
     use SoftDeletes;
 
-    protected $table = 'urun';
+    protected $table = 'urun_detay';
 
     //protected $fillable = ['name','slug'];
     protected $guarded = [];
@@ -18,12 +18,8 @@ class Urun extends Model
     const UPDATED_AT = 'updated_at';
     const DELETED_AT = 'deleted_at';
 
-    public function kategoriler()
+    public function urun()
     {
-        return $this->belongsToMany('App\Models\Kategori','kategori_urun');
-    }
-    public function detay()
-    {
-        return $this->hasOne('App\Models\UrunDetay');
+        return $this->belongsTo('App\Models\Urun');
     }
 }

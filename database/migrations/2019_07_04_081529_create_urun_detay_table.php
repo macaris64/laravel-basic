@@ -3,10 +3,8 @@
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
-use Illuminate\Support\Facades\DB;
 
-
-class CreateUrunTable extends Migration
+class CreateUrunDetayTable extends Migration
 {
     /**
      * Run the migrations.
@@ -15,18 +13,23 @@ class CreateUrunTable extends Migration
      */
     public function up()
     {
-        Schema::create('urun', function (Blueprint $table) {
+        Schema::create('urun_detay', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name',150)->nullable();
-            $table->string('slug',160)->nullable();
-            $table->decimal('fiyat',6,3)->nullable();
-            $table->text('aciklama');
+            $table->integer('urun_id')->unsigned()->unique();
 
-
+            $table->boolean('slider_mi')->default(false);
+            $table->boolean('gunun_firsati_mi')->default(false);
+            $table->boolean('one_cikan_mi')->default(false);
+            $table->boolean('cok_satan_mi')->default(false);
+            $table->boolean('indirimli_mi')->default(false);
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP on UPDATE CURRENT_TIMESTAMP'));
             //$table->softDeletes();
             $table->timestamp('deleted_at')->nullable();
+
+            $table->foreign('urun_id')->references('id')->on('urun')->onDelete('cascade');
+
+
         });
     }
 
@@ -37,6 +40,6 @@ class CreateUrunTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('urun');
+        Schema::dropIfExists('urun_detay');
     }
 }
