@@ -13,6 +13,9 @@ class KategoriController extends Controller
     {
         $kategori = Kategori::where('slug', $slug)->firstOrFail();
         $alt_kategoriler = Kategori::where('parent_category_id',$kategori->id)->get();
-        return view('kategori',compact('kategori','alt_kategoriler'));
+
+        $urunler = $kategori->urunler;
+
+        return view('kategori',compact('kategori','alt_kategoriler','urunler'));
     }
 }

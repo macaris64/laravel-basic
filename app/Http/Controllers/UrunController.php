@@ -5,11 +5,16 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Urun;
+
 
 class UrunController extends Controller
 {
-    public function index()
+    public function index($slug)
     {
-        return view('urun');
+        $urun = Urun::where('slug', $slug)->firstOrFail();
+        //$urun = Urun::whereSlug($slug)->firstOrFail();
+
+        return view('urun',compact('urun' ));
     }
 }

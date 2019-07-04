@@ -17,4 +17,9 @@ class Kategori extends Model
     const UPDATED_AT = 'updated_at';
     const DELETED_AT = 'deleted_at';
 
+    public function urunler()
+    {
+        return $this->belongsToMany('App\Models\Urun','kategori_urun');
+    }
+
 }

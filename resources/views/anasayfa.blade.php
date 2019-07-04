@@ -68,26 +68,13 @@
                 <div class="panel-heading">Öne Çıkan Ürünler</div>
                 <div class="panel-body">
                     <div class="row">
+                        @foreach($one_cikan_urunler as $one_cikan)
                         <div class="col-md-3 product">
-                            <a href="#"><img src="http://lorempixel.com/400/400/food/1"></a>
-                            <p><a href="#">Ürün adı</a></p>
-                            <p class="price">129 ₺</p>
+                            <a href="{{ route('urun', $one_cikan->slug) }}"><img src="https://via.placeholder.com/400x400?text=OneCikan"></a>
+                            <p><a href="{{ route('urun', $one_cikan->slug) }}">{{  $one_cikan -> name }}</a></p>
+                            <p class="price">{{  $one_cikan -> fiyat }} ₺</p>
                         </div>
-                        <div class="col-md-3 product">
-                            <a href="#"><img src="http://lorempixel.com/400/400/food/2"></a>
-                            <p><a href="#">Ürün adı</a></p>
-                            <p class="price">129 ₺</p>
-                        </div>
-                        <div class="col-md-3 product">
-                            <a href="#"><img src="http://lorempixel.com/400/400/food/3"></a>
-                            <p><a href="#">Ürün adı</a></p>
-                            <p class="price">129 ₺</p>
-                        </div>
-                        <div class="col-md-3 product">
-                            <a href="#"><img src="http://lorempixel.com/400/400/food/4"></a>
-                            <p><a href="#">Ürün adı</a></p>
-                            <p class="price">129 ₺</p>
-                        </div>
+                        @endforeach
                     </div>
                 </div>
             </div>
