@@ -2,7 +2,8 @@
 
 Route::get('/' , 'AnasayfaController@index')->name('/');
 Route::get('/index' , 'AnasayfaController@index')->name('anasayfa');
-
+Route::post('/ara','UrunController@ara')->name('ara');
+Route::get('/ara','UrunController@ara')->name('ara');
 
 Route::get('/kategori/{slug_kategoriadi}' , 'KategoriController@index')->name('kategori');
 

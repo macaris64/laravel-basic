@@ -1,6 +1,13 @@
 @extends('layouts.master')
 @section('title', $kategori->name)
 @section('content')
+    <style>
+        p,h4 {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+    </style>
     <div class="container">
         <ol class="breadcrumb">
             <li><a href="{{ route('/')  }}">Anasayfa</a></li>
@@ -55,13 +62,14 @@
                         @endif
                         @foreach($urunler as $urun)
                         <div class="col-md-3 product">
-                            <a href="{{ route('urun' , $urun->slug) }}"><img src="http://lorempixel.com/400x400?text=UrunResmi"></a>
+                            <a href="{{ route('urun' , $urun->slug) }}"><img src="https://via.placeholder.com/400x400?text=UrunResmi"></a>
                             <p><a href="{{ route('urun' , $urun->slug) }}">{{ $urun->name  }}</a></p>
                             <p class="price">{{ $urun->fiyat  }} ₺</p>
                             <p><a href="#" class="btn btn-theme">Sepete Ekle</a></p>
                         </div>
                         @endforeach
                     </div>
+                    {{ $urunler->links()  }}
                 </div>
             </div>
         </div>
