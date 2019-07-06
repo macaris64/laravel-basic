@@ -24,7 +24,14 @@ class Kullanici extends Authenticatable
     const DELETED_AT = 'deleted_at';
 
 
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-    ];
+    public function getAuthPassword()
+    {
+        return $this->sifre;
+    }
+
+    public function getRememberToken()
+    {
+        return $this->aktivasyon_anahtari;
+    }
+
 }
