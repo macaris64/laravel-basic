@@ -19,3 +19,8 @@ Route::get('/kayit-ol' , 'KullaniciController@kayit_form')->name('auth.kayit');
 Route::post('/kayit-ol' , 'KullaniciController@kayit');
 Route::get('/sifre-sifirlama-email' , 'KullaniciController@sifre_sifirla_email_form')->name('auth.sifresifirlaemail');
 Route::get('/sifre-sifirlama-formu' , 'KullaniciController@sifre_sifirla_form')->name('auth.sifresifirlaform');
+//Mail
+Route::get('/test/mail',function (){
+    $kullanici = \App\Models\Kullanici::get()->first();
+    return new App\Mail\KullaniciKayitMail($kullanici);
+});
