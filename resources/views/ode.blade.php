@@ -52,7 +52,7 @@
                 </div>
                 <div class="col-md-7">
                     <h4>Ödenecek Tutar</h4>
-                    <span class="price">18.92 <small>TL</small></span>
+                    <span class="price">{{ Cart::total()  }} <small>TL</small></span>
 
                     <h4>Kargo</h4>
                     <span class="price">0 <small>TL</small></span>
@@ -72,7 +72,6 @@
 @section('foot')
     <script>
         $(document).ready(function () {
-            alert("geldin");
             $('.kredikarti').mask('0000-0000-0000-0000', { placeholder: "____-____-____-____" });
             $('.kredikarti_cvv').mask('000', { placeholder: "___" });
             $('.telefon').mask('(000) 000-00-00', { placeholder: "(___) ___-__-__" });

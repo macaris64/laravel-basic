@@ -19,7 +19,7 @@ class KategoriTableSeeder extends Seeder
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 
 
-        for ($i=0;$i<50;$i++)
+        for ($i=0;$i<20;$i++)
         {
             $name = $faker->firstName;
             $parent_category = rand(0,15);

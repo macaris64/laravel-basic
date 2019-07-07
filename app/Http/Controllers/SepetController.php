@@ -43,7 +43,6 @@ class SepetController extends Controller
     }
 
 
-
     public function ajaxQtyAzalt()
     {
         $urun_id = request('urun_id');
@@ -61,6 +60,13 @@ class SepetController extends Controller
 
 
         Cart::remove($urun_id); // Will update the quantity
+
+        return view('sepet');
+    }
+
+    public function ajaxSepetBosalt()
+    {
+        Cart::destroy(); // Will update the quantity
 
         return view('sepet');
     }

@@ -4,6 +4,7 @@
     <div class="container">
         <div class="bg-content">
             <h2>Sepet</h2>
+            @if(count(Cart::content())>0)
             <table class="table table-bordererd table-hover">
                 <tr>
                     <th>Ürün</th>
@@ -27,20 +28,28 @@
                         </td>
                         <td>{{ number_format( $urun->price * $urun->qty , 2 )   }}</td>
                         <td>
-                            <a  class="sil"  urunToken="{{ $urun->rowId  }}" href="#">Sil</a>
+                            <a class="sil"  urunToken="{{ $urun->rowId  }}" href="#">Sil</a>
                         </td>
                     </tr>
                 @endforeach
                 <tr>
-                    <th></th>
-                    <th></th>
+                    <th>Alt Toplam</th>
+                    <th>{{ number_format( Cart::subtotal() , 2)  }}</th>
+                </tr>
+                <tr>
+                    <th>KDV ({{ config('cart.tax')}} %)</th>
+                    <th>{{ Cart::tax() }}</th>
+                </tr>
+                <tr>
                     <th>Toplam Tutar (KDV Dahil)</th>
                     <th>{{ number_format( Cart::total() , 2)  }}</th>
-                    <th></th>
                 </tr>
             </table>
+            @else
+                <p>Sepetinizde ürün bulunmamaktadır. Anasayfaya dönmek için <a href="{{ route('/') }}">tıklayınız.</a></p>
+            @endif
             <div>
-                <a href="#" class="btn btn-info pull-left">Sepeti Boşalt</a>
+                <a href="javascript:void(0)" class="btn btn-info pull-left bosalt">Sepeti Boşalt</a>
                 <a href="{{ route('ode')  }}" class="btn btn-success pull-right btn-lg">Ödeme Yap</a>
             </div>
         </div>
@@ -71,6 +80,14 @@
             sepet.urunSil(urun_id);
 
         });
+
+        $('.bosalt').click(function () {
+
+            sepet.bosalt();
+
+        });
+
+
 
         var sepet = {
             'arttir':function(urunToken){
@@ -118,10 +135,20 @@
                     }
                 });
 
+            },
+            'bosalt':function () {
+                $.ajax({
+                    'url' : '{{ route('ajax.sepet.bosalt')}}',
+                    'method' : 'post',
+                    'data' :   {'_token' : '{{ csrf_token() }}' } ,
+                    'success':function(data) {
+                        $('body').empty();
+                        $('body').html(data);
+
+
+                    }
+                });
             }
-
-
-
         }
     </script>
 @endsection

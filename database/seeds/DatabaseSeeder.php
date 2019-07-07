@@ -13,6 +13,6 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(KategoriTableSeeder::class);
         $this->call(UrunTableSeeder::class);
-
+        $this->call(SepetModeTableSeeder::class);
     }
 }

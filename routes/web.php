@@ -14,6 +14,7 @@ Route::post('/sepet/ekle' , 'SepetController@ekle')->name('sepet.ekle');
 Route::post('/sepet/arttir' , 'SepetController@ajaxQtyArttir')->name('ajax.sepet.arttir');
 Route::post('/sepet/azalt' , 'SepetController@ajaxQtyAzalt')->name('ajax.sepet.azalt');
 Route::post('/sepet/urun/sil' , 'SepetController@ajaxSepetUrunSil')->name('ajax.sepet.urun.sil');
+Route::post('/sepet/bosalt' , 'SepetController@ajaxSepetBosalt')->name('ajax.sepet.bosalt');
 
 
 
@@ -22,6 +23,7 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('/siparisler' , 'SiparisController@index')->name('siparisler');
     Route::get('/siparisler/{id}' , 'SiparisController@detay')->name('siparis');
 });
+
 
 // Auth Prefix
 Route::get('/giris' , 'KullaniciController@giris_form')->name('auth.giris');
