@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Urun;
+use Illuminate\Support\Facades\Session;
 
 
 class UrunController extends Controller
@@ -15,6 +16,8 @@ class UrunController extends Controller
         $urun = Urun::where('slug', $slug)->firstOrFail();
         $kategoriler = $urun->kategoriler()->distinct()->get();
         //$urun = Urun::whereSlug($slug)->firstOrFail();
+
+        session(['urun_id' => $urun->id]);
 
         return view('urun',compact('urun','kategoriler' ));
     }

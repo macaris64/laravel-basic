@@ -29,7 +29,10 @@
                 <div class="col-md-7">
                     <h1>{{ $urun->name  }}</h1>
                     <p class="price">{{ $urun->fiyat  }} ₺</p>
-                    <p><a href="#" class="btn btn-theme">Sepete Ekle</a></p>
+                    <form action="{{ route('sepet.ekle')  }}" method="post">
+                        {{ csrf_field()  }}
+                        <input type="submit" name="" class="btn btn-theme" value="Sepete Ekle">
+                    </form>
                 </div>
             </div>
 

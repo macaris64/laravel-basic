@@ -7,39 +7,121 @@
             <table class="table table-bordererd table-hover">
                 <tr>
                     <th>Ürün</th>
-                    <th>Tutar</th>
+                    <th>Adet Fiyatı</th>
                     <th>Adet</th>
                     <th>Ara Toplam</th>
-                    <th>İşlem</th>
                 </tr>
+                <!--
                 <tr>
                     <td colspan="5">Henüz sepette ürün yok</td>
                 </tr>
-                <tr>
-                    <td> <img src="http://lorempixel.com/120/100/food/2"> Ürün adı</td>
-                    <td>18.99</td>
-                    <td>
-                        <a href="#" class="btn btn-xs btn-default">-</a>
-                        <span style="padding: 10px 20px">1</span>
-                        <a href="#" class="btn btn-xs btn-default">+</a>
-                    </td>
-                    <td>18.99</td>
-                    <td>
-                        <a href="#">Sil</a>
-                    </td>
-                </tr>
+                -->
+                @foreach(Cart::content() as $key => $urun)
+                    <tr>
+                        <td><a href="{{ route('urun',$urun->options->href)}}"><img src="http://lorempixel.com/120/100/food/2"> {{ $urun->name }}</a> </td>
+                        <td>{{ number_format($urun->price , 2 ) }}</td>
+                        <td>
+                            <a href="#" urunToken="{{ $key }}" class="btn btn-xs btn-default azalt">-</a>
+                            <span style="padding: 10px 20px">{{ $urun->qty  }}</span>
+                            <a href="javascript:void(0)" urunToken="{{ $urun->rowId  }}" class="btn btn-xs btn-default arttir">+</a>
+                        </td>
+                        <td>{{ number_format( $urun->price * $urun->qty , 2 )   }}</td>
+                        <td>
+                            <a  class="sil"  urunToken="{{ $urun->rowId  }}" href="#">Sil</a>
+                        </td>
+                    </tr>
+                @endforeach
                 <tr>
                     <th></th>
                     <th></th>
                     <th>Toplam Tutar (KDV Dahil)</th>
-                    <th>18.99</th>
+                    <th>{{ number_format( Cart::total() , 2)  }}</th>
                     <th></th>
                 </tr>
             </table>
             <div>
                 <a href="#" class="btn btn-info pull-left">Sepeti Boşalt</a>
-                <a href="#" class="btn btn-success pull-right btn-lg">Ödeme Yap</a>
+                <a href="{{ route('ode')  }}" class="btn btn-success pull-right btn-lg">Ödeme Yap</a>
             </div>
         </div>
     </div>
+@endsection
+@section('foot')
+    <script>
+
+
+        $('.arttir').click(function () {
+           var urun_id =$(this).attr('urunToken');
+
+            sepet.arttir(urun_id);
+
+        });
+
+        $('.azalt').click(function () {
+            var urun_id=$(this).attr('urunToken');
+
+            sepet.azalt(urun_id);
+
+        });
+
+
+        $('.sil').click(function () {
+            var urun_id=$(this).attr('urunToken');
+
+            sepet.urunSil(urun_id);
+
+        });
+
+        var sepet = {
+            'arttir':function(urunToken){
+
+                $.ajax({
+                    'url' : '{{ route('ajax.sepet.arttir')}}',
+                    'method' : 'post',
+                    'data' :   {'urun_id':urunToken, '_token' : '{{ csrf_token() }}' } ,
+                    'success':function(data) {
+                        $('body').empty();
+                        $('body').html(data);
+
+
+                    }
+                });
+
+            },
+            'azalt':function(urunToken){
+
+                $.ajax({
+                    'url' : '{{ route('ajax.sepet.azalt')}}',
+                    'method' : 'post',
+                    'data' :   {'urun_id':urunToken, '_token' : '{{ csrf_token() }}' } ,
+                    'success':function(data) {
+                        $('body').empty();
+                        $('body').html(data);
+
+
+                    }
+                });
+
+
+            },
+            'urunSil':function (urunToken) {
+
+                $.ajax({
+                    'url' : '{{ route('ajax.sepet.urun.sil')}}',
+                    'method' : 'post',
+                    'data' :   {'urun_id':urunToken, '_token' : '{{ csrf_token() }}' } ,
+                    'success':function(data) {
+                        $('body').empty();
+                        $('body').html(data);
+
+
+                    }
+                });
+
+            }
+
+
+
+        }
+    </script>
 @endsection

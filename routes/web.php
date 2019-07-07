@@ -10,6 +10,12 @@ Route::get('/kategori/{slug_kategoriadi}' , 'KategoriController@index')->name('k
 Route::get('/urun/{slug_urunadi}' , 'UrunController@index')->name('urun');
 
 Route::get('/sepet' , 'SepetController@index')->name('sepet');
+Route::post('/sepet/ekle' , 'SepetController@ekle')->name('sepet.ekle');
+Route::post('/sepet/arttir' , 'SepetController@ajaxQtyArttir')->name('ajax.sepet.arttir');
+Route::post('/sepet/azalt' , 'SepetController@ajaxQtyAzalt')->name('ajax.sepet.azalt');
+Route::post('/sepet/urun/sil' , 'SepetController@ajaxSepetUrunSil')->name('ajax.sepet.urun.sil');
+
+
 
 Route::group(['middleware' => 'auth'], function() {
     Route::get('/ode' , 'OdeController@index')->name('ode');
